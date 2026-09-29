@@ -1,8 +1,9 @@
 import { useState, useCallback } from "react";
 
-import { cx } from "./data.ts";
-import type { Section } from "./data.ts";
+import { cx, type Section } from "./data.ts";
+
 import MainMenu from "./sections/MainMenu";
+import Profile from "./sections/Profile";
 
 export type SectionProps = {
   go: (s: Section) => void
@@ -35,8 +36,8 @@ function App() {
 
       <div className="absolute inset-0 z-10 overflow-hidden">
         {activeSection == "menu" && <MainMenu go={go} />}
+        {activeSection == "profile" && <Profile go={go} />}
       </div>
-
 
       <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
         {["bg-white", "bg-p5red", "bg-black"].map((c, i) => (
