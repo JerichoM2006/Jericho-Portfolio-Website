@@ -9,11 +9,11 @@ export default function MainMenu({ go }: SectionProps) {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowDown") {
+      if (e.key == "ArrowDown") {
         setMi((mi + 1) % menu.length);
-      } else if (e.key === "ArrowUp") {
+      } else if (e.key == "ArrowUp") {
         setMi((mi - 1 + menu.length) % menu.length);
-      } else if (e.key === "Enter") {
+      } else if (e.key == "Enter") {
         go(menu[mi].section);
       }
     };

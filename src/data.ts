@@ -5,6 +5,6 @@ export interface MenuItem {name: string, description: string, section: Section}
 
 export const menu: MenuItem[] = [
     {name: "PROFILE", description: "About me", section: "profile"},
-    {name: "PROJECTS", description: "My projects", section: "projects"},
-    {name: "LINKS", description: "Contact me", section: "links"},
+    {name: "PROJECTS", description: "My personal projects", section: "projects"},
+    {name: "LINKS", description: "Links to do with me", section: "links"},
 ]
