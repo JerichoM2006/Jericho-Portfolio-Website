@@ -26,8 +26,7 @@
   @keyframes flip { from { translate: 60px 0; opacity: 0; } }
   @keyframes fill { from { scale: 0 1; } }
 
-  /* bars slide in, hold at 0 (full-screen cover), then slide out */
-  @keyframes sweep { 0% { translate: -150% 0; } 38%, 62% { translate: 0 0; } 100% { translate: 150% 0; } }
+  @keyframes sweep { 0% { translate: -150% 0; } 48%, 52% { translate: 0 0; } 100% { translate: 150% 0; } }
 }
 
 html, body, #root { height: 100%; margin: 0; overflow: hidden; background: #e60012; }
