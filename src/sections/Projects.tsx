@@ -1,5 +1,5 @@
 import { useState, useEffect, type ReactNode } from "react";
-import { cx, PROJECTS } from "../data.ts";
+import { cx, projects } from "../data.ts";
 
 import { P } from "../components/Typography.tsx";
 import Screen from "../components/Screen.tsx";
@@ -19,14 +19,14 @@ function LinkBtn({ href, children, onDark }: { href: string; children: ReactNode
 
 export default function Projects({ go }: SectionProps) {
   const [pi, setPi] = useState(0);
-  const p = PROJECTS[pi];
+  const p = projects[pi];
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key == "ArrowDown") {
-        setPi((pi + 1) % PROJECTS.length);
+        setPi((pi + 1) % projects.length);
       } else if (e.key == "ArrowUp") {
-        setPi((pi - 1 + PROJECTS.length) % PROJECTS.length);
+        setPi((pi - 1 + projects.length) % projects.length);
       } 
     };
     window.addEventListener("keydown", onKey);
@@ -36,7 +36,7 @@ export default function Projects({ go }: SectionProps) {
   return (
       <Screen id="projects" title="PROJECTS" onBack={() => go("menu")}>
         <ul className="list-none m-0 p-0 pr-4 py-2 flex flex-col gap-1">
-          {PROJECTS.map((x, i) => (
+          {projects.map((x, i) => (
             <li key={x.name} style={{ animationDelay: `${0.2 + i * 0.08}s` }} onMouseEnter={() => setPi(i)} onClick={() => setPi(i)}
               className={cx("cursor-pointer font-display text-[clamp(18px,2vw,26px)] leading-tight border-[3px] px-4 py-2 -skew-x-[8deg] transition duration-150 animate-slidein",
                 i === pi ? "bg-white text-p5red border-black scale-105 translate-x-3 shadow-[5px_5px_0_#000] z-10" : cx("bg-black text-white border-white", i % 2 ? "rotate-1" : "-rotate-[1.5deg]"))}>

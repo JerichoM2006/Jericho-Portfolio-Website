@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { cx, firstName, lastName, LANGUAGES, TOOLS, EDUCATIONS } from "../data.ts";
+import { cx, firstName, lastName, languages, tools, educations } from "../data.ts";
 
 import type { SectionProps } from "../App.tsx";
 
@@ -94,17 +94,17 @@ export default function Profile({ go }: SectionProps) {
         <div className={cx(CARD, "bg-black border-white gap-[.5em]")}>
           <Heading>LANGUAGES</Heading>
           <div className="flex flex-wrap gap-[.4em] mb-[.6em]">
-            {LANGUAGES.map((l) => <Tag key={l}>{l}</Tag>)}
+            {languages.map((l) => <Tag key={l}>{l}</Tag>)}
           </div>
 
           <Heading>TOOLS</Heading>
           <div className="flex flex-wrap gap-[.4em] mb-[.6em]">
-            {TOOLS.map((t) => <Tag key={t}>{t}</Tag>)}
+            {tools.map((t) => <Tag key={t}>{t}</Tag>)}
           </div>
 
           <Heading>EDUCATION</Heading>
           <div className="flex flex-col">
-            {EDUCATIONS.map((e) => <Education key={e.name} name={e.name} grade={e.grade} />)}
+            {educations.map((e) => <Education key={e.name} name={e.name} grade={e.grade} />)}
           </div>
         </div>
       </Screen>
