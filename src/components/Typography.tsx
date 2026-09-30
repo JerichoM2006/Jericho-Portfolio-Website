@@ -7,7 +7,7 @@ const Skewed = ({ className, children }: { className?: string; children: ReactNo
 
 export function Heading({ children, dark }: { children: ReactNode; dark?: boolean }) {
   return (
-    <h3 className="mt-3 mb-2">
+    <h3 className="mt-3 mb-1">
       <Skewed className={cx("font-display text-xl px-3 py-0.5 text-white", dark ? "bg-black" : "bg-p5red")}>{children}</Skewed>
     </h3>
   );

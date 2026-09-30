@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { menu, cx } from "../data.ts";
+import { menu, cx, firstName, lastName } from "../data.ts";
 
 import type { SectionProps } from "../App.tsx";
 
@@ -24,7 +24,7 @@ export default function MainMenu({ go }: SectionProps) {
   return (
     <>
       <div className="absolute right-[6vw] top-[8vh] text-right -rotate-6 z-10 animate-pop">
-        <b className="inline-block font-display font-normal text-[clamp(30px,6vw,76px)] leading-[.9] bg-black px-[.2em] py-[.05em] skew-x-[-8deg] shadow-[6px_6px_0_#fff]">JERICHO JOHN<br />MENDOZA</b><br />
+        <b className="inline-block font-display font-normal text-[clamp(30px,6vw,76px)] leading-[.9] bg-black px-[.2em] py-[.05em] skew-x-[-8deg] shadow-[6px_6px_0_#fff]">{firstName.toUpperCase()}<br />{lastName.toUpperCase()}</b><br />
         <span className="inline-block mt-3 bg-white text-black font-display text-[clamp(13px,1.8vw,22px)] px-4 py-1 skew-x-[-8deg]">CS PORTFOLIO</span>
       </div>
 
@@ -32,7 +32,7 @@ export default function MainMenu({ go }: SectionProps) {
         {menu.map((m, i) => (
           <li key={m.name} style={{ animationDelay: `${0.25 + i * 0.1}s` }}
             className={cx("relative -my-1 cursor-pointer animate-slidein", indent[i],
-              i == mi && "before:content-[''] before:absolute before:-left-9 before:top-[75%] before:-mt-5 before:border-20 before:border-transparent before:border-l-34 before:border-l-black before:border-r-0 before:filter-[drop-shadow(-3px_0_0_var(--color-p5red))] before:z-10 before:animate-nudge")}
+              i == mi && "before:content-[''] before:absolute before:-left-9 before:top-[75%] before:-mt-5 before:border-20 before:border-transparent before:border-l-34 before:border-l-p5red before:border-r-0 before:filter-[drop-shadow(-3px_0_0_var(--color-white))] before:z-10 before:animate-nudge")}
             onMouseEnter={() => setMi(i)} onClick={() => { go(m.section); }}>
             
             <span className={cx("block border-[3px] pl-[.6em] pr-[.9em] pt-[.12em] pb-[.06em] font-display text-[clamp(26px,4.2vw,52px)] leading-[1.05] skew-x-[-8deg] [clip-path:polygon(0_8%,96%_0,100%_90%,4%_100%)] transition duration-150",
