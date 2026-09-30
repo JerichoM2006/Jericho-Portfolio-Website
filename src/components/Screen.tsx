@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
+import { cx } from "../data.ts";
 
-export default function Screen({ id, title, onBack, children }: { id: string; title: string; onBack: () => void; children: ReactNode }) {
+export default function Screen({ id, title, onBack, children }: { id: string; title: string; onBack: () => void; children: ReactNode; }) {
   return (
     <>
       <div id={id} className="flex items-center gap-4 mb-[2vh]">
@@ -9,7 +10,8 @@ export default function Screen({ id, title, onBack, children }: { id: string; ti
         </button>
         <h2 className="font-display text-[clamp(30px,4.5vw,56px)] leading-none bg-black pl-[.25em] pr-[.35em] py-[.05em] skew-x-[-10deg] rotate-[-1.5deg] shadow-[5px_5px_0_#fff] animate-slidein">{title}</h2>
       </div>
-      <div className="absolute inset-x-[5vw] top-[16vh] bottom-[4vh] grid gap-[3vw] grid-cols-1 md:grid-cols-[1fr_1.25fr] min-h-0 overflow-auto md:overflow-visible">
+
+      <div className={cx("absolute inset-x-[5vw] top-[16vh] bottom-[4vh] min-h-0 overflow-hidden grid gap-[3vw] grid-cols-1 md:grid-cols-[1fr_1.25fr] md:overflow-visible")}>
         {children}
       </div>
     </>

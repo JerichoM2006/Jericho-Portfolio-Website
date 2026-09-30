@@ -5,6 +5,7 @@ import { cx, type Section } from "./data.ts";
 import MainMenu from "./sections/MainMenu";
 import Profile from "./sections/Profile";
 import Projects from "./sections/Projects";
+import Links from "./sections/Links";
 
 export type SectionProps = {
   go: (s: Section) => void
@@ -49,6 +50,7 @@ function App() {
         {activeSection == "menu" && <MainMenu go={go} />}
         {activeSection == "profile" && <Profile go={go} />}
         {activeSection == "projects" && <Projects go={go} />}
+        {activeSection == "links" && <Links go={go} />}
       </div>
 
       <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
