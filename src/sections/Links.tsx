@@ -16,8 +16,8 @@ function LinkCard({ item, setKi: setKi, index, isSelected }: { item: LinkItem; s
       </div>
 
       <div className="px-4 pt-4 pb-3">
-        <div className={cx("font-display text-[clamp(26px,3.6vw,42px)] leading-none text-p5red -skew-x-[8deg] [text-shadow:3px_3px_0_#000]")}>{item.name}</div>
-        <div className="mt-2 inline-block bg-black text-white font-display text-base px-2 -skew-x-[10deg]">{item.handle}</div>
+        <div className={cx("font-display text-[clamp(26px,3.6vw,42px)] leading-none text-p5red skew-x-[-8deg] [text-shadow:3px_3px_0_#000]")}>{item.name}</div>
+        <div className="mt-2 inline-block bg-black text-white font-display text-base px-2 skew-x-[-10deg]">{item.handle}</div>
         <p className="mt-2 text-[clamp(14px,1.3vw,18px)] font-semibold leading-tight">{item.description}</p>
       </div>
 

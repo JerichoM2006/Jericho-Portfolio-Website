@@ -18,7 +18,7 @@ function Stat({ label, children, big }: { label: string; children: ReactNode; bi
       <div className="bg-black text-white font-display text-[.75em] tracking-widest px-[.5em] py-[.1em]">{label}</div>
       <div
         className={cx(
-          "px-[.6em] py-[.3em] font-display leading-none text-black break-words",
+          "px-[.6em] py-[.3em] font-display leading-none text-black wrap-break-word",
           big ? "text-[2em] text-p5red [text-shadow:.08em_.08em_0_#000]" : "text-[1.1em]"
         )}
       >
