@@ -2,7 +2,7 @@
   "name": "jericho-portfolio-website",
   "homepage": "https://jerichom2006.github.io/JerichoM-Portfolio/",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
