@@ -52,7 +52,7 @@ export default function Links({ go }: SectionProps) {
       <div className="flex h-full w-full flex-col items-center justify-center gap-6">
         <div className="relative w-full">
           <div onWheel={e => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) e.currentTarget.scrollLeft += e.deltaY; }}
-            className="relative flex gap-[3vw] overflow-x-auto snap-x px-[8vw] py-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            className="relative flex gap-[3vw] overflow-x-auto snap-x px-[8vw] py-10 scrollbar-none [&::-webkit-scrollbar]:hidden">
           {linkItems.map((x, i) => {
             const sel = i === ki;
             return (
@@ -63,9 +63,9 @@ export default function Links({ go }: SectionProps) {
         </div>
         
         <div className="relative mt-2 flex items-center gap-3 font-display text-lg">
-          <button onClick={() => step(-1)} className="bg-white text-black px-4 py-1 -skew-x-[10deg] border-[3px] border-black cursor-pointer hover:bg-p5red hover:text-white">&#9664; PREV</button>
-          <span className="bg-black px-4 py-1 -skew-x-[10deg] border-[3px] border-white">{String(ki + 1).padStart(2, "0")} / {String(linkItems.length).padStart(2, "0")}</span>
-          <button onClick={() => step(1)} className="bg-white text-black px-4 py-1 -skew-x-[10deg] border-[3px] border-black cursor-pointer hover:bg-p5red hover:text-white">NEXT &#9654;</button>
+          <button onClick={() => step(-1)} className="bg-white text-black px-4 py-1 skew-x-[-10deg] border-[3px] border-black cursor-pointer hover:bg-p5red hover:text-white">&#9664; PREV</button>
+          <span className="bg-black px-4 py-1 skew-x-[-10deg] border-[3px] border-white">{String(ki + 1).padStart(2, "0")} / {String(linkItems.length).padStart(2, "0")}</span>
+          <button onClick={() => step(1)} className="bg-white text-black px-4 py-1 skew-x-[-10deg] border-[3px] border-black cursor-pointer hover:bg-p5red hover:text-white">NEXT &#9654;</button>
         </div>
       </div>
     </Screen>
