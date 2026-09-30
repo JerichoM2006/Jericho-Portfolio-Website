@@ -3,6 +3,7 @@ export const cx = (...a: (string | false | undefined)[]) => a.filter(Boolean).jo
 export type Section = "menu" | "profile" | "projects" | "links"
 export interface MenuItem {name: string, description: string, section: Section}
 export interface EducationItem {name: string, grade: string}
+export interface ProjectItem {name: string, header: string, description: string, stack: string[], url: string}
 
 export const menu: MenuItem[] = [
     {name: "PROFILE", description: "About me", section: "profile"},
@@ -23,3 +24,9 @@ export const EDUCATIONS: EducationItem[] = [
     {name: "A-Levels (Physics, Maths, Further Maths, CS)", grade: "A*A*A*A"},
     {name: "BSc Computer Science (Year 1)", grade: "First"},
 ];
+
+//Projects
+export const PROJECTS: ProjectItem[] = [
+    {name: "Portfolio Website", header: "This website!", description: "A portfolio website to showcase my projects and skills.", stack: ["React", "TypeScript", "TailwindCSS"], url: "https://www.youtube.com/"},
+    {name: "Portfolio Website", header: "This website! NONONONO!", description: "A portfolio fsdlkjfosdoifjoi website to showcase my projects and skills.", stack: ["React", "TypeScript", "TailwindCSS"], url: "https://www.youtube.com/"}
+]

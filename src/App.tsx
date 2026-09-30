@@ -1,9 +1,10 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import { cx, type Section } from "./data.ts";
 
 import MainMenu from "./sections/MainMenu";
 import Profile from "./sections/Profile";
+import Projects from "./sections/Projects";
 
 export type SectionProps = {
   go: (s: Section) => void
@@ -21,6 +22,16 @@ function App() {
     setTimeout(() => { setWipe(false); setBusy(false); }, 1300);
   }, [busy]);
 
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key == "Escape" && activeSection != "menu") {
+        go("menu");
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [go]);
+
   return (
     <div className="fixed inset-0 overflow-hidden bg-p5red text-white font-body">
       
@@ -37,6 +48,7 @@ function App() {
       <div className="absolute inset-0 z-10 overflow-hidden">
         {activeSection == "menu" && <MainMenu go={go} />}
         {activeSection == "profile" && <Profile go={go} />}
+        {activeSection == "projects" && <Projects go={go} />}
       </div>
 
       <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
