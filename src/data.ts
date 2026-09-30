@@ -92,7 +92,7 @@ export const projects: ProjectItem[] = [
       "Worked effectively under tight deadlines in a fast-paced environment, completing assigned tasks while helping coordinate progress and keeping other team members on track.",
     ],
     stack: ["GDScript", "Godot"],
-    url: "https://human-inc.itch.io/joeover",
+    url: "https://github.com/williamorriss/GMTK2026",
     start: "07/2026",
     end: "07/2026",
   },
