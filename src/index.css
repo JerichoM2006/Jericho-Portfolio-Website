@@ -9,13 +9,16 @@
   --animate-jolt: jolt 0.35s;
   --animate-nudge: nudge 0.6s infinite alternate;
   --animate-spin-slow: turn 40s linear infinite;
+  --animate-spin-fast: turn 3s linear infinite;
   --animate-shardx: shardx 1s cubic-bezier(0.2, 0.9, 0.2, 1) both;
   --animate-shardy: shardy 0.9s 0.2s both;
   --animate-pop: pop 0.6s 0.5s both;
   --animate-flip: flip 0.4s both;
   --animate-fill: fill 0.4s both;
   --animate-sweep: sweep 1s cubic-bezier(0.7, 0, 0.3, 1) both;
+  --animate-drop: drop 0.5s cubic-bezier(0.3, 1.4, 0.5, 1) both;
 
+  @keyframes drop { from { translate: 0 -70vh; opacity: 0; } }
   @keyframes slidein { from { translate: -120% 0; } }
   @keyframes jolt { 0% { rotate: -8deg; scale: 0.9; } 60% { rotate: -1deg; scale: 1.18; } }
   @keyframes nudge { to { translate: 10px 0; } }
