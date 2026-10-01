@@ -1,7 +1,6 @@
-import { useState, useEffect, useRef, type ReactNode } from "react";
+import { useState, useEffect, useLayoutEffect, useCallback, useRef, type ReactNode } from "react";
 import { cx, projects as rawProjects } from "../data.ts";
 
-import { P } from "../components/Typography.tsx";
 import Screen from "../components/Screen.tsx";
 import type { SectionProps } from "../App.tsx";
 
@@ -20,7 +19,7 @@ function LinkBtn({ href, children, onDark }: { href: string; children: ReactNode
   const external = href.startsWith("http");
   return (
     <a href={href} {...(external ? { target: "_blank", rel: "noopener" } : {})}
-      className={cx("font-display text-lg no-underline text-black bg-white px-4 py-1 skew-x-[-10deg] border-[3px] transition duration-150",
+      className={cx("inline-block font-display text-[1.1em] no-underline text-black bg-white px-[1em] py-[.2em] skew-x-[-10deg] border-[.17em] transition duration-150",
         "hover:bg-p5red hover:text-white hover:scale-105 hover:-rotate-2 focus-visible:bg-p5red focus-visible:text-white focus-visible:outline-none",
         onDark ? "border-p5red" : "border-black")}>
       {children}
@@ -41,6 +40,7 @@ export default function Projects({ go }: SectionProps) {
   const [pi, setPi] = useState(0);
   const viaKey = useRef(false);
   const listRef = useRef<HTMLUListElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
   const p = projects[pi];
   const ongoing = !p.end;
 
@@ -62,6 +62,34 @@ export default function Projects({ go }: SectionProps) {
   const pick = (i: number) => {
     if (fullyVisible(i)) setPi(i);
   };
+
+  const fit = useCallback(() => {
+    const el = panelRef.current;
+    if (!el) return;
+    const fits = (s: number) => {
+      el.style.fontSize = `${s}px`;
+      return el.scrollHeight <= el.clientHeight + 1;
+    };
+    let lo = 8;
+    let hi = Math.min(Math.max(16, Math.min(window.innerWidth * 0.017, window.innerHeight * 0.032)), 64);
+    if (fits(hi)) return;
+    while (hi - lo > 0.25) {
+      const mid = (lo + hi) / 2;
+      if (fits(mid)) lo = mid;
+      else hi = mid;
+    }
+    el.style.fontSize = `${lo}px`;
+  }, []);
+
+  useLayoutEffect(() => {
+    fit();
+  }, [pi, fit]);
+
+  useEffect(() => {
+    window.addEventListener("resize", fit);
+    document.fonts?.ready.then(fit);
+    return () => window.removeEventListener("resize", fit);
+  }, [fit]);
 
   useEffect(() => {
     if (viaKey.current) {
@@ -101,7 +129,7 @@ export default function Projects({ go }: SectionProps) {
                   <span className="opacity-80">{x.header}</span>
                   <span className="opacity-80 tracking-wider">{range(x)}</span>
                 </small>
-                
+
                 {!x.end && (
                   <span className="absolute right-[.3em] top-[.15em] bg-p5red text-white font-display text-[.46em] tracking-wider px-[.7em] py-[.2em] border-[.17em] border-black -rotate-3">
                     NOW
@@ -115,37 +143,38 @@ export default function Projects({ go }: SectionProps) {
         <ArrowBtn onClick={() => step(1)} label="Next project">&#9660;</ArrowBtn>
       </div>
 
-      <div key={p.name + pi} className="relative min-h-0 overflow-y-auto p-5 bg-white text-black border-[3px] border-black [clip-path:polygon(0_0,100%_2%,98%_100%,2%_98%)] animate-flip scrollbar-none [&::-webkit-scrollbar]:hidden">
-        <span className="absolute right-6 top-3 font-display text-base tracking-widest opacity-60">
+      <div ref={panelRef} key={p.name + pi}
+        className="relative min-h-0 overflow-hidden p-[1.1em] bg-white text-black border-[.17em] border-black [clip-path:polygon(0_0,100%_2%,98%_100%,2%_98%)] animate-flip">
+        <span className="absolute right-[1.2em] top-[.7em] font-display text-[.9em] tracking-widest opacity-60">
           {pi + 1}/{projects.length}
         </span>
 
-        <div className="font-display text-[clamp(26px,3.4vw,42px)] leading-none text-p5red skew-x-[-8deg] [text-shadow:3px_3px_0_#000]">{p.name}</div>
+        <div className="pr-[2.5em] font-display text-[2.4em] leading-none text-p5red skew-x-[-8deg] [text-shadow:.07em_.07em_0_#000]">{p.name}</div>
 
-        <div className="flex flex-wrap items-center gap-2 mt-2">
-          <span className="bg-black text-white font-display text-sm tracking-wider px-3 py-0.5 skew-x-[-10deg]">
+        <div className="flex flex-wrap items-center gap-[.5em] mt-[.5em]">
+          <span className="bg-black text-white font-display text-[.8em] tracking-wider px-[.75em] py-[.12em] skew-x-[-10deg]">
             {range(p)}
           </span>
           {ongoing && (
-            <span className="bg-p5red text-white font-display text-sm tracking-wider px-3 py-0.5 skew-x-[-10deg] border-2 border-black">
+            <span className="bg-p5red text-white font-display text-[.8em] tracking-wider px-[.75em] py-[.12em] skew-x-[-10deg] border-[.12em] border-black">
               IN PROGRESS
             </span>
           )}
         </div>
 
-        <P>{p.description}</P>
+        <p className="my-[.6em] font-body font-semibold text-[1.05em] leading-snug">{p.description}</p>
 
-        <ul className="list-none m-0 p-0 mb-3 flex flex-col gap-1.5">
+        <ul className="list-none m-0 p-0 mb-[.75em] flex flex-col gap-[.35em]">
           {p.highlights.map(h => (
-            <li key={h} className="flex gap-2 font-body font-semibold text-lg leading-snug">
-              <span aria-hidden className="mt-2 size-2.5 shrink-0 rotate-45 bg-p5red border border-black" />
+            <li key={h} className="flex gap-[.5em] font-body font-semibold text-[1em] leading-snug">
+              <span aria-hidden className="mt-[.45em] size-[.6em] shrink-0 rotate-45 bg-p5red border-[.06em] border-black" />
               {h}
             </li>
           ))}
         </ul>
 
-        <div className="flex flex-wrap gap-2 my-3">
-          {p.stack.map(t => <span key={t} className="bg-p5red text-white font-bold text-base px-3 py-0.5 skew-x-[-10deg]">{t}</span>)}
+        <div className="flex flex-wrap gap-[.5em] my-[.75em]">
+          {p.stack.map(t => <span key={t} className="bg-p5red text-white font-bold text-[.9em] px-[.75em] py-[.12em] skew-x-[-10deg]">{t}</span>)}
         </div>
         {p.url && <LinkBtn href={p.url}>VIEW CODE</LinkBtn>}
       </div>
