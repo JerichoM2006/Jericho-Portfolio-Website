@@ -28,15 +28,15 @@ export default function MainMenu({ go }: SectionProps) {
         <span className="inline-block mt-3 bg-white text-black font-display text-[clamp(13px,1.8vw,22px)] px-4 py-1 skew-x-[-8deg]">CS PORTFOLIO</span>
       </div>
 
-      <ul className="absolute left-[5vw] top-1/2 -translate-y-1/2 w-[min(440px,86vw)] list-none p-0 m-0">
+      <ul className="absolute left-[5vw] top-1/2 -translate-y-1/2 w-[min(8.5em,86vw)] text-[clamp(26px,min(3.6vw,8vh),96px)] list-none p-0 m-0">
         {menu.map((m, i) => (
           <li key={m.name} style={{ animationDelay: `${0.25 + i * 0.1}s` }}
             className={cx("relative -my-1 cursor-pointer animate-slidein", indent[i],
-              i == mi && "before:content-[''] before:absolute before:-left-9 before:top-[75%] before:-mt-5 before:border-20 before:border-transparent before:border-l-34 before:border-l-p5red before:border-r-0 before:filter-[drop-shadow(-3px_0_0_var(--color-white))] before:z-10 before:animate-nudge")}
+              i == mi && "before:content-[''] before:absolute before:left-[-0.7em] before:top-[75%] before:mt-[-0.4em] before:border-[0.4em] before:border-transparent before:border-l-[0.65em] before:border-l-p5red before:border-r-0 before:filter-[drop-shadow(-3px_0_0_var(--color-white))] before:z-10 before:animate-nudge")}
             onMouseEnter={() => setMi(i)} onClick={() => { go(m.section); }}>
-            
-            <span className={cx("block border-[3px] pl-[.6em] pr-[.9em] pt-[.12em] pb-[.06em] font-display text-[clamp(26px,4.2vw,52px)] leading-[1.05] skew-x-[-8deg] [clip-path:polygon(0_8%,96%_0,100%_90%,4%_100%)] transition duration-150",
-              i == mi ? "bg-white text-p5red border-white -rotate-3 scale-[1.1] translate-x-5 animate-jolt [text-shadow:3px_3px_0_#000]"
+
+            <span className={cx("block border-[0.06em] pl-[.6em] pr-[.9em] pt-[.12em] pb-[.06em] font-display leading-[1.05] skew-x-[-8deg] [clip-path:polygon(0_8%,96%_0,100%_90%,4%_100%)] transition duration-150",
+              i == mi ? "bg-white text-p5red border-white -rotate-3 scale-[1.1] translate-x-[0.4em] animate-jolt [text-shadow:3px_3px_0_#000]"
                 : cx("bg-black text-white border-black", i % 2 ? "rotate-2" : "-rotate-3"))}>
               {m.name}
             </span>
