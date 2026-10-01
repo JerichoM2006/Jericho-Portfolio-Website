@@ -3,11 +3,11 @@ import { cx, linkItems, type LinkItem} from "../data.ts";
 import type { SectionProps } from "../App.tsx";
 import Screen from "../components/Screen.tsx";
 
-function LinkCard({ item, setKi: setKi, index, isSelected }: { item: LinkItem; setKi: (index: number) => void; index: number; isSelected: boolean }) {
+function LinkCard({ item, setKi, index, isSelected }: { item: LinkItem; setKi: (index: number) => void; index: number; isSelected: boolean }) {
   return (
     <a key={item.name} id={`link-${index}`} href={item.url} target="_blank" rel="noopener" onMouseEnter={() => setKi(index)} onFocus={() => setKi(index)}
       style={{ animationDelay: `${0.3 + Math.min(index, 4) * 0.15}s` }}
-      className={cx("relative block flex-none snap-center w-[min(15.6em,60vw)] bg-white text-black no-underline border-[.19em] border-black transition duration-200 animate-drop focus-visible:outline-none",
+      className={cx("relative flex flex-col flex-none snap-center w-[min(15.6em,60vw)] bg-white text-black no-underline border-[.19em] border-black transition duration-200 animate-drop focus-visible:outline-none",
         isSelected ? "scale-110 rotate-0 z-10 shadow-[.6em_.6em_0_#e60012]" : cx("shadow-[.4em_.4em_0_#000]", ["-rotate-6", "rotate-3 md:translate-y-[1.5em]", "-rotate-3"][index % 3]))}>
       <div className="bg-black text-white flex items-center gap-[.5em] px-[.75em] py-[.4em]">
         <svg viewBox="-100 -100 200 200" className={cx("w-[1.5em] h-[1.5em]", isSelected && "animate-spin-fast")}>
@@ -15,7 +15,7 @@ function LinkCard({ item, setKi: setKi, index, isSelected }: { item: LinkItem; s
         </svg>
       </div>
 
-      <div className="px-[1em] pt-[1em] pb-[.75em]">
+      <div className="flex-1 px-[1em] pt-[1em] pb-[.75em]">
         <div className="font-display text-[2.6em] leading-none text-p5red skew-x-[-8deg] [text-shadow:.07em_.07em_0_#000]">{item.name}</div>
         <div className="mt-[.5em] inline-block bg-black text-white font-display px-[.5em] skew-x-[-10deg]">{item.handle}</div>
         <p className="mt-[.5em] text-[1.1em] font-semibold leading-tight">{item.description}</p>
